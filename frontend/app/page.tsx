@@ -1,9 +1,9 @@
 "use client"
 
 import { useState } from "react"
-import { VideoGenerationForm } from "@/components/VideoGenerationForm"
-import { StatusDisplay } from "@/components/StatusDisplay"
-import { Header } from "@/components/Header"
+import { VideoGenerationForm } from "../components/VideoGenerationForm"
+import { StatusDisplay } from "../components/StatusDisplay"
+import { Header } from "../components/Header"
 
 export default function Home() {
   const [currentRequestId, setCurrentRequestId] = useState<string | null>(null)

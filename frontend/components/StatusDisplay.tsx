@@ -1,11 +1,11 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { Button } from "@/components/ui/Button"
-import { Card } from "@/components/ui/Card"
-import { Badge } from "@/components/ui/Badge"
+import { Button } from "../components/ui/Button"
+import { Card } from "../components/ui/Card"
+import { Badge } from "../components/ui/Badge"
 import { Loader2, CheckCircle, XCircle, Clock, MessageSquare, Video, RefreshCw, ExternalLink } from "lucide-react"
-import { apiService } from "@/lib/api"
+import { apiService } from "../lib/api"
 
 interface VideoRequest {
   id: string

@@ -1,11 +1,11 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { Button } from "@/components/ui/Button"
-import { Card } from "@/components/ui/Card"
-import { Badge } from "@/components/ui/Badge"
-import { Input } from "@/components/ui/Input"
-import { Label } from "@/components/ui/Label"
+import { Button } from "../components/ui/Button"
+import { Card } from "../components/ui/Card"
+import { Badge } from "../components/ui/Badge"
+import { Input } from "../components/ui/Input"
+import { Label } from "../components/ui/Label"
 import {
   RefreshCw,
   Search,

@@ -3,13 +3,13 @@
 import type React from "react"
 
 import { useState, useEffect } from "react"
-import { Button } from "@/components/ui/Button"
-import { Input } from "@/components/ui/Input"
-import { Label } from "@/components/ui/Label"
-import { Select } from "@/components/ui/Select"
-import { Card } from "@/components/ui/Card"
+import { Button } from "../components/ui/Button"
+import { Input } from "../components/ui/Input"
+import { Label } from "../components/ui/Label"
+import { Select } from "../components/ui/Select"
+import { Card } from "../components/ui/Card"
 import { Loader2, Play, User, MapPin, Phone } from "lucide-react"
-import { apiService } from "@/lib/api"
+import { apiService } from "../lib/api"
 
 interface Actor {
   id: string
