@@ -1,0 +1,87 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Actor {
+  id          String @id @default(cuid())
+  name        String
+  description String?
+  voiceId     String
+  imageUrl    String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
+  videoRequests VideoRequest[]
+  
+  @@map("actors")
+}
+
+model VideoRequest {
+  id              String @id @default(cuid())
+  userName        String
+  userCity        String
+  userPhone       String
+  actorId         String
+  
+  // SyncLabs API Response
+  syncLabsJobId   String?
+  videoUrl        String?
+  status          RequestStatus @default(PENDING)
+  
+  // WhatsApp Delivery
+  whatsappMessageId String?
+  deliveryStatus    DeliveryStatus @default(PENDING)
+  
+  // Timestamps
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  
+  // Relations
+  actor           Actor @relation(fields: [actorId], references: [id])
+  logs            RequestLog[]
+  
+  @@map("video_requests")
+}
+
+model RequestLog {
+  id            String @id @default(cuid())
+  videoRequestId String
+  logType       LogType
+  message       String
+  data          Json?
+  createdAt     DateTime @default(now())
+  
+  videoRequest  VideoRequest @relation(fields: [videoRequestId], references: [id])
+  
+  @@map("request_logs")
+}
+
+enum RequestStatus {
+  PENDING
+  PROCESSING
+  COMPLETED
+  FAILED
+}
+
+enum DeliveryStatus {
+  PENDING
+  SENT
+  DELIVERED
+  READ
+  FAILED
+}
+
+enum LogType {
+  INFO
+  ERROR
+  SUCCESS
+  WEBHOOK
+}
