@@ -178,33 +178,34 @@ export function VideoGenerationForm({ onVideoGenerated, disabled = false }: Vide
           </div>
 
           {/* Actor Selection */}
-          <div className="space-y-3">
-            <Label htmlFor="actorId" className="text-white font-inter font-medium text-base">
-              Choose Actor
-            </Label>
-            {loadingActors ? (
-              <div className="flex items-center justify-center py-12">
-                <Loader2 className="w-8 h-8 animate-spin text-primary" />
-                <span className="ml-3 text-white/70 font-inter text-lg">Loading actors...</span>
-              </div>
-            ) : (
-              <Select
-                value={formData.actorId}
-                onValueChange={(value) => handleInputChange("actorId", value)}
-                disabled={disabled || loading}
-                className="w-full h-12 bg-white/5 border-white/20 text-white font-inter focus:border-primary"
-              >
-                <option value="" className="bg-black text-white">
-                  Select an actor
-                </option>
-                {actors.map((actor) => (
-                  <option key={actor.id} value={actor.id} className="bg-black text-white">
-                    {actor.name}
-                  </option>
-                ))}
-              </Select>
-            )}
-          </div>
+        <div className="space-y-3">
+  <Label htmlFor="actorId" className="text-white font-inter font-medium text-base">
+    Choose Actor
+  </Label>
+  {loadingActors ? (
+    <div className="flex items-center justify-center py-12">
+      <Loader2 className="w-8 h-8 animate-spin text-primary" />
+      <span className="ml-3 text-white/70 font-inter text-lg">Loading actors...</span>
+    </div>
+  ) : (
+    <select
+      id="actorId"
+      value={formData.actorId}
+      onChange={(e) => handleInputChange("actorId", e.target.value)}
+      disabled={disabled || loading}
+      className="w-full h-12 bg-white/5 border-white/20 text-white font-inter focus:border-primary"
+    >
+      <option value="" className="bg-black text-white">
+        Select an actor
+      </option>
+      {actors.map((actor) => (
+        <option key={actor.id} value={actor.id} className="bg-black text-white">
+          {actor.name}
+        </option>
+      ))}
+    </select>
+  )}
+</div>
 
           {/* Selected Actor Preview */}
           {selectedActor && (
