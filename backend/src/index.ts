@@ -15,7 +15,8 @@ import adminRoutes from "./routes/admin"
 import { runMigrations } from "./database/migrate"
 
 // Load environment variables
-dotenv.config()
+require('dotenv').config();
+
 
 const app = express()
 const port = process.env.PORT || 3001
@@ -93,6 +94,9 @@ app.use((err: any, req: express.Request, res: express.Response, next: express.Ne
     message: process.env.NODE_ENV === "development" ? err.message : "Something went wrong",
   })
 })
+app.get("/", (req, res) => {
+  res.send("🚀 API is running. Check /health or /api/status");
+});
 
 // 404 handler
 app.use("*", (req, res) => {
